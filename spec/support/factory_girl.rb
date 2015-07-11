@@ -7,4 +7,10 @@ FactoryGirl.define do
     password_confirmation 'password'
   end
 
+  factory :game do
+    user
+    name "Point Blank"
+    password "johncusack"
+  end
+
 end
