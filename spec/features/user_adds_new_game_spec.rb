@@ -23,7 +23,8 @@ so that friends can join my game" do
     fill_in "Password", with: "secretstuff"
     fill_in "Password confirmation", with: "secretstuff"
     click_button "Submit"
-    expect(page).to have_content "The Killing Game has been successfully created."
+    expect(page).to have_content "The Killing Game has been
+    successfully created."
     expect(page).to have_content "The Killing Game"
 
     visit games_path
@@ -32,7 +33,7 @@ so that friends can join my game" do
 
   scenario 'an unauthenticated user tries to add a game
   and sees an error message' do
-    user = FactoryGirl.create(:user)
+    FactoryGirl.create(:user)
     visit '/'
     click_link "Create new game"
     expect(page).to have_content "You need to sign in or sign up
