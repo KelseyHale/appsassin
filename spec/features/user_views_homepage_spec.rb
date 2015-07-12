@@ -7,6 +7,6 @@ feature "As a user
     visit '/'
     expect(page).to have_content "Appsassin"
     expect(page).to have_content "Create new game"
-    expect(page).to have_content "View created games"    
+    expect(page).to have_content "View created games"
   end
 end
