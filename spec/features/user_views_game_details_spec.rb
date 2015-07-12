@@ -11,29 +11,29 @@ i want to see the details of the game
 so that I can see who has joined" do
   scenario "authenticated user visits show page
   and sees list of players and rules" do
-  user = FactoryGirl.create(:user)
-  game = FactoryGirl.create(:game)
-  player = FactoryGirl.create(:player, game: game)
+    user = FactoryGirl.create(:user)
+    game = FactoryGirl.create(:game)
+    player = FactoryGirl.create(:player, game: game)
 
-  visit new_user_session_path
-  fill_in "Email", with: user.email
-  fill_in "Password", with: user.password
-  click_button "Log in"
+    visit new_user_session_path
+    fill_in "Email", with: user.email
+    fill_in "Password", with: user.password
+    click_button "Log in"
 
-  visit '/'
-  click_on "View created games"
-  click_on game.name
-  expect(page).to have_content game.name
-  expect(page).to have_content "Members of this game"
-  expect(page).to have_content player.user.email
+    visit '/'
+    click_on "View created games"
+    click_on game.name
+    expect(page).to have_content game.name
+    expect(page).to have_content "Members of this game"
+    expect(page).to have_content player.user.email
   end
 
   scenario "an unauthenticated user tries to visit show page
   and gets an error" do
-  game = FactoryGirl.create(:game)
+    game = FactoryGirl.create(:game)
 
-  visit games_path
-  click_on game.name
-  expect(page).to have_content "You need to sign in or sign up"
+    visit games_path
+    click_on game.name
+    expect(page).to have_content "You need to sign in or sign up"
   end
 end
