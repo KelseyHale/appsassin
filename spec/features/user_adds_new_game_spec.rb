@@ -12,7 +12,7 @@ i want to create a new game
 so that friends can join my game" do
   scenario 'an authenticated user adds a game
   and is redirected to the new games show page' do
-    FactoryGirl.create(:user)
+    user = FactoryGirl.create(:user)
     visit new_user_session_path
     fill_in "Email", with: user.email
     fill_in "Password", with: user.password
