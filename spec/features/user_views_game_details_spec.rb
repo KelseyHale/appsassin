@@ -23,6 +23,7 @@ so that I can see who has joined" do
     visit '/'
     click_on "View created games"
     click_on game.name
+
     expect(page).to have_content game.name
     expect(page).to have_content "Members of this game"
     expect(page).to have_content player.user.email
