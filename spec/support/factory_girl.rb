@@ -9,8 +9,12 @@ FactoryGirl.define do
 
   factory :game do
     user
-    name "Point Blank"
+    sequence(:name) {|n| "Point Blank#{n}" }
     password "johncusack"
   end
 
+  factory :player do
+    user
+    game
+  end
 end
