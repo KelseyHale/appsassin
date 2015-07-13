@@ -5,7 +5,7 @@ require 'rails_helper'
 # [√] User must be logged in
 # [√] User must be on show page
 # [√] User sees list of all players in game
-# [] User sees names of people in the game
+# [√] User sees names of people in the game
 # [] User sees profile picture of people in the game
 
 feature "as a user
