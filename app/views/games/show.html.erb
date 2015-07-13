@@ -3,6 +3,6 @@
 <ul>
   <h3>Members of this game</h3>
   <% @players.each do |player| %>
-    <li><%= player.user.email %></li>
+    <li><%= player.user.first_name %></li>
   <% end %>
 </ul>
