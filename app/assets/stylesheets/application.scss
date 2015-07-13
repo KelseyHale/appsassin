@@ -15,3 +15,23 @@
  *= require foundation_and_overrides
 
  */
+
+ .profile-photo img {
+  width: 3em;
+  max-height: 3em;
+  float: right;
+  margin-top: 2px;
+  margin-right: 0px;
+  background: inherit;
+}
+
+.profile-photo li {
+  background: #000000;
+}
+
+.user-name {
+  float: left;
+  color: white;
+  font-size: 10pt;
+  margin-top: 11px;
+}
