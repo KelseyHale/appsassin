@@ -1,0 +1,10 @@
+<%= form_tag(game_players_path(@game), id: "game password") do |f| %>
+
+  <div class="field">
+    <%= text_field_tag :password, params[:password], autocomplete: "off" %>
+  </div>
+
+  <div class="actions">
+    <%= submit_tag "Submit" %>
+  </div>
+<% end %>

@@ -1,5 +1,13 @@
 <h1><%= @game.name %></h1>
 
+<% if @game.player_in_game?(@game, current_user) %>
+  <%= link_to "Leave game", class:"button" %>
+<% elsif @game.password != "" %>
+  <%= link_to "Join game", new_game_player_path(@game), class:"button" %>
+<% else %>
+  <%= link_to "Join game", game_players_path(@game), class:"button" %>
+<% end %>
+
 <ul>
   <h3>Members of this game</h3>
   <% @players.each do |player| %>
@@ -11,7 +19,5 @@
         <li><%= image_tag(player.user.profile_photo) %></li>
       <%- end -%>
   </div>
-
-
   <% end %>
 </ul>
