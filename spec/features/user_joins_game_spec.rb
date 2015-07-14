@@ -2,13 +2,16 @@ require 'rails_helper'
 
 # Acceptance criteria
 #
-# [] User must be logged in
-# [] User must be on game details page
-# [] User must enter password
-# [] User sees an error message if incorrect password is entered
+# [√] User must be logged in
+# [√] User must be on game details page
+# [] User must enter password if the game creator used a password
+# [] If there is no password the user automatically gets added to the game
+# [√] User sees an error message if incorrect password is entered
 
 
-feature "as a user i want to be able to join a game so that i can play the game" do
+feature "as a user
+i want to be able to join a game
+so that i can play the game" do
   scenario "user views details of game and joins game with password" do
     user = FactoryGirl.create(:user)
     game = FactoryGirl.create(:game)
@@ -20,13 +23,33 @@ feature "as a user i want to be able to join a game so that i can play the game"
 
     click_link "View created games"
     click_link game.name
-    click_button "Join game"
-    
+    click_link "Join game"
+    fill_in "password", with: game.password
+    click_button "Submit"
+
     expect(page).to have_content user.first_name
   end
 
   scenario "user enters incorrect password and sees an error message" do
+    user = FactoryGirl.create(:user)
+    game = FactoryGirl.create(:game)
 
+    visit new_user_session_path
+    fill_in "Email", with: user.email
+    fill_in "Password", with: user.password
+    click_button "Log in"
+
+    click_link "View created games"
+    click_link game.name
+    click_link "Join game"
+    fill_in "password", with: "Incorrect"
+    click_button "Submit"
+  end
+
+  scenario "unauthenticated user tries to join game and sees error message" do
+    game = FactoryGirl.create(:game)
+    visit new_game_player_path(game)
+    expect(page).to have_content "You need to sign in or sign up"
   end
 
 end
