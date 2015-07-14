@@ -41,9 +41,11 @@
       <%= value %>
     </div>
   <%- end -%>
-
-  <%= yield %>
-
+  <div class="row">
+    <div class="small-6 small-centered columns">
+      <%= yield %>
+    </div>
+  </div>
   <%= javascript_include_tag 'application' %>
   <%= yield :extra_footer %>
 </body>

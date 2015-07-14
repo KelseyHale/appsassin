@@ -16,8 +16,48 @@
 
  */
 
+ $yellow: #FFEEAC;
+ $blue: #141F3D;
+ $black: #060208;
+ $gold: #8A5A2C;
+ $brightred: #BE1214;
+ $gray: #8E8A86;
+
+ // blue color palette
+ $white: #F1F0F1;
+ $mid-level-blue: #011E56;
+ $dark-blue: #000F23;
+ $steely-blue: #053156;
+ $bright-blue: #048AA1;
+
+ //
+
+
+body {
+  background-color: $yellow;
+}
+
+.top-bar {
+  background: $steely-blue;
+}
+
+.top-bar-section ul li {
+  background: $steely-blue;
+}
+.top-bar-section li:not(.has-form) a:not(.button) {
+  background: $steely-blue;
+}
+//
+.profile-photo ul li {
+  background: $steely-blue;
+}
+//
+// .top-bar .name h1 {
+//   color: $bright-blue;
+// }
+
 .profile-photo img {
-  background: inherit;
+  // background: inherit;
   float: right;
   margin-right: 0px;
   margin-top: 2px;
@@ -25,9 +65,9 @@
   width: 3em;
 }
 
-.profile-photo li {
-  background: #000000;
-}
+// .profile-photo li {
+//   background: #000000;
+// }
 
 .user-pic img {
    margin-right: 0;
