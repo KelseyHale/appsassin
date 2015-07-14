@@ -9,7 +9,6 @@ require 'rails_helper'
 # [√] User sees an error message if incorrect password is entered
 # [√] User that has already joined the game sees a link to leave the game
 
-
 feature "as a user
 i want to be able to join a game
 so that i can play the game" do
