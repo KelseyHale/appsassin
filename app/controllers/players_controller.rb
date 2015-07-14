@@ -1,15 +1,6 @@
 class PlayersController < ApplicationController
   before_action :authenticate_user!
 
-  # def player_in_game?(game)
-  #   @players.each do |player|
-  #     if player.user.id == current_user.id
-  #       return true
-  #     end
-  #   end
-  #   false
-  # end
-
   def index
     @game = Game.find(params[:game_id])
     @players = @game.players
