@@ -16,19 +16,19 @@
 
  */
 
- $yellow: #FFEEAC;
- $blue: #141F3D;
- $black: #060208;
- $gold: #8A5A2C;
- $brightred: #BE1214;
- $gray: #8E8A86;
+$yellow: #ffeeac;
+$blue: #141f3d;
+$black: #060208;
+$gold: #8A5A2C;
+$brightred: #BE1214;
+$gray: #8E8A86;
 
- // blue color palette
- $white: #F1F0F1;
- $mid-level-blue: #011E56;
- $dark-blue: #000F23;
- $steely-blue: #053156;
- $bright-blue: #048AA1;
+// blue color palette
+$white: #F1F0F1;
+$mid-level-blue: #011E56;
+$dark-blue: #000F23;
+$steely-blue: #053156;
+$bright-blue: #048AA1;
 
  //
 
@@ -51,6 +51,7 @@ body {
 .profile-photo ul li {
   background: $steely-blue;
 }
+
 //
 // .top-bar .name h1 {
 //   color: $bright-blue;
@@ -59,7 +60,7 @@ body {
 .profile-photo img {
   // background: inherit;
   float: right;
-  margin-right: 0px;
+  margin-right: 0;
   margin-top: 2px;
   max-height: 3em;
   width: 3em;
@@ -70,10 +71,10 @@ body {
 // }
 
 .user-pic img {
-   margin-right: 0;
-   margin-top: 2px;
-   max-height: 3em;
-   width: 3em;
+  margin-right: 0;
+  margin-top: 2px;
+  max-height: 3em;
+  width: 3em;
 }
 
 .user-name {
