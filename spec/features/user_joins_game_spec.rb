@@ -4,9 +4,10 @@ require 'rails_helper'
 #
 # [√] User must be logged in
 # [√] User must be on game details page
-# [] User must enter password if the game creator used a password
-# [] If there is no password the user automatically gets added to the game
+# [√] User must enter password if the game creator used a password
+# [√] If there is no password the user gets added to the game on click
 # [√] User sees an error message if incorrect password is entered
+# [√] User that has already joined the game sees a link to leave the game
 
 
 feature "as a user
@@ -28,6 +29,8 @@ so that i can play the game" do
     click_button "Submit"
 
     expect(page).to have_content user.first_name
+    expect(page).to have_link "Leave game"
+    expect(page).to_not have_link "Join game"
   end
 
   scenario "user enters incorrect password and sees an error message" do
@@ -51,5 +54,4 @@ so that i can play the game" do
     visit new_game_player_path(game)
     expect(page).to have_content "You need to sign in or sign up"
   end
-
 end

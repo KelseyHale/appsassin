@@ -1,15 +1,32 @@
 class PlayersController < ApplicationController
   before_action :authenticate_user!
 
+  # def player_in_game?(game)
+  #   @players.each do |player|
+  #     if player.user.id == current_user.id
+  #       return true
+  #     end
+  #   end
+  #   false
+  # end
+
   def index
     @game = Game.find(params[:game_id])
+    @players = @game.players
+
+    if @game.player_in_game?(@game, current_user)
+      flash[:notice] = "You are already a member of this game."
+    else
+      Player.create(user_id: current_user.id, game_id: @game.id)
+      flash[:notice] = "You have joined the game #{@game.name}."
+    end
+
     redirect_to game_path(@game)
   end
 
   def new
     @game = Game.find(params[:game_id])
     @player = Player.new
-      # binding.pry
   end
 
   def create
