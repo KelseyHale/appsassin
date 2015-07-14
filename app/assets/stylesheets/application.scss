@@ -1,0 +1,85 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ *= require foundation_and_overrides
+
+ */
+
+$yellow: #ffeeac;
+$blue: #141f3d;
+$black: #060208;
+$gold: #8A5A2C;
+$brightred: #BE1214;
+$gray: #8E8A86;
+
+// blue color palette
+$white: #F1F0F1;
+$mid-level-blue: #011E56;
+$dark-blue: #000F23;
+$steely-blue: #053156;
+$bright-blue: #048AA1;
+
+ //
+
+
+body {
+  background-color: $yellow;
+}
+
+.top-bar {
+  background: $steely-blue;
+}
+
+.top-bar-section ul li {
+  background: $steely-blue;
+}
+.top-bar-section li:not(.has-form) a:not(.button) {
+  background: $steely-blue;
+}
+//
+.profile-photo ul li {
+  background: $steely-blue;
+}
+
+//
+// .top-bar .name h1 {
+//   color: $bright-blue;
+// }
+
+.profile-photo img {
+  // background: inherit;
+  float: right;
+  margin-right: 0;
+  margin-top: 2px;
+  max-height: 3em;
+  width: 3em;
+}
+
+// .profile-photo li {
+//   background: #000000;
+// }
+
+.user-pic img {
+  margin-right: 0;
+  margin-top: 2px;
+  max-height: 3em;
+  width: 3em;
+}
+
+.user-name {
+  color: #ffffff;
+  float: left;
+  font-size: 10pt;
+  margin-top: 11px;
+}
