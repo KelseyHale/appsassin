@@ -9,7 +9,7 @@ class Player < ActiveRecord::Base
     players = Player.all
     possible_targets = []
     players.each do |player|
-      unless current_player.user_id == player.user_id
+      if current_player.user_id != player.user_id && player.active == "t"
         possible_targets << player.user_id
       end
     end
