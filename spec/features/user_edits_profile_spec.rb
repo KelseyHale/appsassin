@@ -1,4 +1,6 @@
 require 'rails_helper'
+require 'spec_helper'
+
 
 # Acceptence Criteria
 # [✓] I can navigate to an update page for my profile
