@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   has_many :games
   has_many :players
+  has_many :targets
   has_many :games, through: :players
 
   validates :email, presence: true

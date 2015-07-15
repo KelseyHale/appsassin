@@ -16,15 +16,19 @@ RSpec.describe Player, type: :model do
         player2 = Player.create(user: user2, game: game)
         player3 = Player.create(user: user3, game: game)
         player4 = Player.create(user: user4, game: game, active: false)
+        target = Target.create(user: user, game: game)
+        target2 = Target.create(user: user2, game: game)
+        target3 = Target.create(user: user3, game: game)
+        target4 = Target.create(user: user4, game: game, active: false)
 
         expect(player.generate_targets(player)).to eq [
-          player2.user_id,
-          player3.user_id
+          target2,
+          target3
         ]
         expect(player.generate_targets(player)).to_not eq [
-          player2.user_id,
-          player3.user_id,
-          player4.user_id
+          target2,
+          target3,
+          target4
         ]
       end
     end

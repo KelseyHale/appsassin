@@ -6,13 +6,17 @@ class Player < ActiveRecord::Base
   validates :game, presence: true
 
   def generate_targets(current_player)
-    players = Player.all
+    players = Player.where(active: true)
+    targets = Target.where(active: true)
     possible_targets = []
+    # binding.pry
     players.each do |player|
-      if current_player.user_id != player.user_id && player.active == "t"
-        possible_targets << player.user_id
+      targets.each do |target|
+        if current_player.user_id != target.user_id #change player.user_id to target.user_id
+          possible_targets << target
+        end
       end
     end
-    possible_targets
+    possible_targets.uniq
   end
 end
