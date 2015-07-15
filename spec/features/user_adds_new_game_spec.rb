@@ -1,4 +1,5 @@
 require 'rails_helper'
+require 'spec_helper'
 
 # Acceptance Criteria
 #
@@ -38,7 +39,7 @@ so that friends can join my game" do
     FactoryGirl.create(:user)
     visit '/'
     click_link "Create new game"
-  
+
     expect(page).to have_content "You need to sign in or sign up
     before continuing."
     expect(page).to have_content "Log in"

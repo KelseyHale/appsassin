@@ -1,4 +1,5 @@
 require 'rails_helper'
+require 'spec_helper'
 
 feature "As a user
   I want to view a list of created games
