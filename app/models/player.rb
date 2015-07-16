@@ -8,8 +8,6 @@ class Player < ActiveRecord::Base
   validates :user, presence: true
   validates :game, presence: true
 
-  # @used = []
-
   def generate_targets(current_player)
     targets = Target.where(game_id: current_player.game_id, active: true)
     possible_targets = []
@@ -19,22 +17,9 @@ class Player < ActiveRecord::Base
       end
     end
     possible_targets #= possible_targets - used_targets(current_player)
-    # binding.pry
   end
 
   def assign_target_to_player(current_player)
     generate_targets(current_player).sample
-    # all_possible.pop
   end
-
-  # def used_targets(current_player)
-  #   @used = []
-  #   @used << assign_target_to_player(current_player)
-  # end
 end
-
-#   @used = []
-#   target = player.used_targets(player)
-# @players.each do |player|
-#   RoundAssignment.create!(round_id: 1, player_id: player.id, target_id: player.assign_target_to_player(player).id)
-# end

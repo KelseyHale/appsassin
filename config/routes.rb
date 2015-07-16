@@ -5,6 +5,11 @@ Rails.application.routes.draw do
   resources :games, only: [:index, :new, :create, :show] do
     resources :players, only: [:index, :new, :create]
   end
+  resources :games, only: [:index, :new, :create, :show] do
+    resources :rounds, only: [:new, :create]
+  end
+  resources :round_assignments, only: [:new, :create]
+  # resources :rounds, only: [:new, :create]
   resources :users, only: [:edit, :update]
   devise_for :users
   # The priority is based upon order of creation: first created -> highest priority.

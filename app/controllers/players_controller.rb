@@ -10,6 +10,7 @@ class PlayersController < ApplicationController
     else
       Player.create(user_id: current_user.id, game_id: @game.id)
       flash[:notice] = "You have joined the game #{@game.name}."
+      Target.create(user_id: current_user.id, game_id: @game.id)
     end
 
     redirect_to game_path(@game)
@@ -18,19 +19,24 @@ class PlayersController < ApplicationController
   def new
     @game = Game.find(params[:game_id])
     @player = Player.new
+    @target = Target.new
   end
 
   def create
     @player = Player.new
+    @target = Target.new
     @game = Game.find(params[:game_id])
     @user = current_user
     @player.game = @game
     @player.user = @user
+    @target.game = @game
+    @target.user = @user
 
     if params[:password] == @game.password
       if @player.save
         flash[:notice] = "You have joined the game #{@game.name}."
         redirect_to game_path(@game)
+        @target.save
       else
         flash[:error] = @player.errors.full_messages.join(". ")
         render :new
