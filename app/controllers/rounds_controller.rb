@@ -5,11 +5,11 @@ class RoundsController < ApplicationController
     @round = Round.current_round
     @players = @game.players
 
-    if @round == nil
+    if @game.rounds == []
       @round = Round.create(name: 1, game: @game)
       flash[:notice] = "The game has begun."
     else
-      @round = Round.create(name: (@round.name + 1), game: @game)
+      @round = Round.create(name: (@game.rounds.last.name + 1), game: @game)
     end
 
     Round.assign_targets_to_actives(@game)

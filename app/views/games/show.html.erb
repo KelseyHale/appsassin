@@ -3,7 +3,7 @@
 <% if @game.rounds.last == nil%>
   <%= "Waiting for game to begin" %>
 <% else %>
-  <h5><%= "Round #{@game.rounds.last.name}" %></h5>
+  <h5><%= "Round #{@game.rounds.current_round.name}" %></h5>
 <% end %>
 
 <% if @game.player_in_game?(@game, current_user) %>
