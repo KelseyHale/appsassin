@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
+  authenticated :user do
+  root :to => "players#dashboard", as: "authenticated_root"
+  # Rails 4 users must specify the 'as' option to give it a unique name
+  # root :to => "main#dashboard", :as => "authenticated_root"
+  end
   root 'homes#index'
+
 
   resources :rules, only: [:index]
   resources :games, only: [:index, :new, :create, :show] do

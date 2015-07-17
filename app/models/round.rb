@@ -17,14 +17,14 @@ class Round < ActiveRecord::Base
     players.each do |player|
       if targets.last.user != player.user
         RoundAssignment.create!(
-          round_id: (current_round.name + 1),
+          round_id: (current_round.id),
           player_id: player.id,
           target_id: targets.last.id
         )
         targets.pop
       else
         RoundAssignment.create!(
-          round_id: (current_round.name + 1),
+          round_id: (current_round.id),
           player_id: player.id,
           target_id: targets.first.id
         )

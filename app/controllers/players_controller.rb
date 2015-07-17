@@ -46,4 +46,8 @@ class PlayersController < ApplicationController
       render :new
     end
   end
+
+  def dashboard
+    # @target = player.game.rounds.last.round_assignments.where(player_id: current_user.players.where(game_id: player.game.id).last.id).last.target.user.first_name
+  end
 end
