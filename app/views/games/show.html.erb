@@ -1,11 +1,23 @@
 <h1><%= @game.name %></h1>
 
+<% if @game.rounds.last == nil%>
+  <%= "Waiting for game to begin" %>
+<% else %>
+  <h5><%= "Round #{@game.rounds.current_round.name}" %></h5>
+<% end %>
+
 <% if @game.player_in_game?(@game, current_user) %>
   <%= link_to "Leave game", class:"button" %>
 <% elsif @game.password != "" %>
   <%= link_to "Join game", new_game_player_path(@game), class:"button" %>
 <% else %>
   <%= link_to "Join game", game_players_path(@game), class:"button" %>
+<% end %>
+
+<% if @game.user == current_user %>
+    <ul class="button-group text-center">
+      <li><%= button_to "Start game", game_rounds_path(@game), method: :post %></li>
+    </ul>
 <% end %>
 
 <ul>

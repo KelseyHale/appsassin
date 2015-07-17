@@ -1,6 +1,8 @@
 class Game < ActiveRecord::Base
   belongs_to :user
+  has_many :rounds
   has_many :players
+  has_many :targets
   has_many :users, through: :players
 
   validates :name, presence: true
