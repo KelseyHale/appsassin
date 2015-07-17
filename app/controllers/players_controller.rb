@@ -46,4 +46,7 @@ class PlayersController < ApplicationController
       render :new
     end
   end
+
+  def dashboard
+  end
 end

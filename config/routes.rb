@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  authenticated :user do
+    root to: "players#dashboard", as: "authenticated_root"
+  end
   root 'homes#index'
 
   resources :rules, only: [:index]
