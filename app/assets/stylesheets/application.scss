@@ -71,10 +71,11 @@ body {
 // }
 
 .user-pic img {
-  margin-right: 0;
-  margin-top: 2px;
-  max-height: 3em;
-  width: 3em;
+  // margin-right: 0;
+  // margin-top: 2px;
+  max-height: 300px;
+  // width: 3em;
+  vertical-align: middle;
 }
 
 .user-name {
@@ -82,4 +83,21 @@ body {
   float: left;
   font-size: 10pt;
   margin-top: 11px;
+}
+
+.player-list {
+  margin: 20px;
+  display: inline-flex;
+}
+
+ul .player-panel {
+  margin: 6px;
+  padding: 20px 10px 20px 10px;
+  background: $gray;
+  color: $steely-blue;
+}
+
+.player-panel h5 {
+  margin-top: 20px;
+  color: $steely-blue
 }
