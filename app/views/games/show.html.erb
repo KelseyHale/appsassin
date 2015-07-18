@@ -21,17 +21,20 @@
 <% end %>
 
 <h3>Members of this game</h3>
-<% @players.each do |player| %>
-<ul class="small-block-grid-3">
-  <li>
-    <%= player.user.first_name %>
-    <div class = user-pic>
-      <%- if player.user.profile_photo.file == nil -%>
-        <%= image_tag("default_prof_pic.jpg") %>
-      <%- else -%>
-        <%= image_tag(player.user.profile_photo) %>
-      <%- end -%>
-    </div>
-  </li>
-</ul>
-<% end %>
+
+<div class="row clearfix">
+  <ul class="small-block-grid-3 player-list">
+    <% @players.each do |player| %>
+      <li class="panel text-center player-panel">
+        <%= player.user.first_name %>
+        <div class ="user-pic th">
+          <%- if player.user.profile_photo.file == nil -%>
+            <%= image_tag("default_prof_pic.jpg") %>
+          <%- else -%>
+            <%= image_tag(player.user.profile_photo) %>
+          <%- end -%>
+        </div>
+    <% end %>
+    </li>
+  </ul>
+</div>

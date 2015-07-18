@@ -22,9 +22,9 @@
               <%= current_user.first_name %>
             </div>
             <%- if current_user.profile_photo.file == nil -%>
-              <li><%= link_to image_tag("default_prof_pic.jpg"), edit_user_registration_path, id: "edit-profile" %></li>
+              <li><a><%= link_to image_tag("default_prof_pic.jpg"), edit_user_registration_path, id: "edit-profile" %></a></li>
             <%- else -%>
-              <li><%= link_to image_tag(current_user.profile_photo), edit_user_registration_path, id: "edit-profile" %></li>
+              <li><a><%= link_to image_tag(current_user.profile_photo), edit_user_registration_path, id: "edit-profile" %></a></li>
             <%- end -%>
             <li><%= link_to 'Sign Out', destroy_user_session_path, method: :delete %></li>
           <%- else -%>
