@@ -73,10 +73,10 @@ body {
 .user-pic img {
   // margin-right: 0;
   // margin-top: 2px;
+  margin-bottom: auto;
+  margin-top: auto;
   max-height: 300px;
   // width: 3em;
-  margin-top: auto;
-  margin-bottom: auto;
 }
 
 .user-name {
@@ -87,23 +87,23 @@ body {
 }
 
 .player-list {
-  margin: 20px;
   display: inline-flex;
+  margin: 20px;
 }
 
 ul .player-panel {
-  margin: 6px;
-  padding: 20px 10px 20px 10px;
   background: $steely-blue;
   color: $gold;
+  margin: 6px;
+  padding: 20px 10px;
 }
 
 .player-panel h5 {
+  color: $gold;
   margin-top: 20px;
-  color: $gold
 }
 
 ul .player-panel .user-pic :hover {
   background-image: image-url("default_prof_pic.jpg");
-  opacity: .2;
+  opacity: 0.2;
 }
