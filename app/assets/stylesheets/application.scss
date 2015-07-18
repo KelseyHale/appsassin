@@ -61,7 +61,7 @@ body {
   // background: inherit;
   float: right;
   margin-right: 0;
-  margin-top: 2px;
+  margin-top: 5px;
   max-height: 3em;
   width: 3em;
 }
@@ -71,10 +71,12 @@ body {
 // }
 
 .user-pic img {
-  margin-right: 0;
-  margin-top: 2px;
-  max-height: 3em;
-  width: 3em;
+  // margin-right: 0;
+  // margin-top: 2px;
+  margin-bottom: auto;
+  margin-top: auto;
+  max-height: 300px;
+  // width: 3em;
 }
 
 .user-name {
@@ -82,4 +84,26 @@ body {
   float: left;
   font-size: 10pt;
   margin-top: 11px;
+}
+
+.player-list {
+  display: inline-flex;
+  margin: 20px;
+}
+
+ul .player-panel {
+  background: $steely-blue;
+  color: $gold;
+  margin: 6px;
+  padding: 20px 10px;
+}
+
+.player-panel h5 {
+  color: $gold;
+  margin-top: 20px;
+}
+
+ul .player-panel .user-pic :hover {
+  background-image: image-url("default_prof_pic.jpg");
+  opacity: 0.2;
 }

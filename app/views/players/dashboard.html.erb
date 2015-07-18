@@ -1,23 +1,31 @@
-<h1>Your current targets:</h1>
+<h1 class="text-center"><%= current_user.first_name %></h1>
+<h3 class="text-center">Your current targets:</h3>
 
-<% current_user.players.each do |player| %>
-  <% if player.game.rounds.last != nil %>
-    <%= player.game.name %></br>
-    <%= player.game.rounds.last.round_assignments.where(player_id: current_user.players.where(game_id: player.game.id).last.id).last.target.user.first_name %></br></br>
+<div class="row clearfix center">
+  <ul class="small-block-grid-3 player-list center">
+    <% current_user.players.each do |player| %>
+      <% if player.game.rounds.last != nil %>
+          <li class="panel text-center player-panel">
+          <h5><%= player.game.name %></br></h5>
+            <%= player.game.rounds.last.round_assignments.where(player_id: current_user.players.where(game_id: player.game.id).last.id).last.target.user.first_name %></br></br>
 
-    <div class = user-pic>
-      <%- if player.game.rounds.last.round_assignments.where(player_id: current_user.players.where(game_id: player.game.id).last.id).last.target.user.profile_photo.file == nil -%>
-        <%= image_tag("default_prof_pic.jpg") %>
-      <%- else -%>
-        <%= image_tag(player.game.rounds.last.round_assignments.where(player_id: current_user.players.where(game_id: player.game.id).last.id).last.target.user.profile_photo) %>
-      <%- end -%>
-  </div>
-
-  <% else %>
-    <%= player.game.name %></br>
-    <%= "---Waiting for target---." %></br></br>
-  <% end %>
-<% end %>
+            <div class ="user-pic th">
+              <%- if player.game.rounds.last.round_assignments.where(player_id: current_user.players.where(game_id: player.game.id).last.id).last.target.user.profile_photo.file == nil -%>
+                <%= image_tag("default_prof_pic.jpg") %>
+              <%- else -%>
+                <%= image_tag(player.game.rounds.last.round_assignments.where(player_id: current_user.players.where(game_id: player.game.id).last.id).last.target.user.profile_photo) %>
+              <%- end -%>
+            </div>
+          </li>
+      <% else %>
+      <li class="panel text-center player-panel">
+        <%= player.game.name %></br>
+        <%= "---Waiting for target---." %></br></br>
+      </li>
+      <% end %>
+    <% end %>
+  </ul>
+</div>
 
 
 

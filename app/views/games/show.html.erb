@@ -1,33 +1,42 @@
-<h1><%= @game.name %></h1>
+<div class="text-center">
+  <h1><%= @game.name %></h1>
 
-<% if @game.rounds.last == nil%>
-  <%= "Waiting for game to begin" %>
-<% else %>
-  <h5><%= "Round #{@game.rounds.current_round.name}" %></h5>
-<% end %>
-
-<% if @game.player_in_game?(@game, current_user) %>
-  <%= link_to "Leave game", class:"button" %>
-<% elsif @game.password != "" %>
-  <%= link_to "Join game", new_game_player_path(@game), class:"button" %>
-<% else %>
-  <%= link_to "Join game", game_players_path(@game), class:"button" %>
-<% end %>
-
-<% if @game.user == current_user %>
-    <ul class="button-group text-center">
-      <li><%= button_to "Start game", game_rounds_path(@game), method: :post %></li>
-    </ul>
-<% end %>
-
-<h3>Members of this game</h3>
-<% @players.each do |player| %>
-  <%= player.user.first_name %>
-  <div class = user-pic>
-    <%- if player.user.profile_photo.file == nil -%>
-      <%= image_tag("default_prof_pic.jpg") %>
-    <%- else -%>
-      <%= image_tag(player.user.profile_photo) %>
-    <%- end -%>
+  <% if @game.rounds.last == nil%>
+    <%= "Waiting for game to begin" %>
+  <% else %>
+    <h5><%= "Round #{@game.rounds.current_round.name}" %></h5>
+  <% end %>
+  <div class="button-group text-center">
+    <% if @game.player_in_game?(@game, current_user) %>
+      <%= link_to "Leave game", class:"button" %>
+    <% elsif @game.password != "" %>
+      <%= link_to "Join game", new_game_player_path(@game), class:"button" %>
+    <% else %>
+      <%= link_to "Join game", game_players_path(@game), class:"button" %>
+    <% end %>
+    <% if @game.user == current_user %>
+        <ul>
+          <li><%= button_to "Start game", game_rounds_path(@game), method: :post %></li>
+        </ul>
+    <% end %>
+  </div>
 </div>
-<% end %>
+
+<h3 class="text-center">Members of this game</h3>
+
+<div class="row clearfix">
+  <ul class="small-block-grid-3 large-block-grid-3 player-list">
+    <% @players.each do |player| %>
+      <li class="panel text-center player-panel">
+        <%= player.user.first_name %>
+        <div class ="user-pic th">
+          <%- if player.user.profile_photo.file == nil -%>
+            <%= image_tag("default_prof_pic.jpg") %>
+          <%- else -%>
+            <%= image_tag(player.user.profile_photo) %>
+          <%- end -%>
+        </div>
+    <% end %>
+    </li>
+  </ul>
+</div>
