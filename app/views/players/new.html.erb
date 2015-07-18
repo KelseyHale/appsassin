@@ -1,7 +1,7 @@
 <%= form_tag(game_players_path(@game), id: "game password") do |f| %>
 
   <div class="field">
-    <%= text_field_tag :password, params[:password], autocomplete: "off" %>
+    <%= text_field_tag :password, params[:password], autocomplete: "off", placeholder: "Please enter access code provided by the game creator", label: "Please enter access code provided by the game creator" %>
   </div>
 
   <div class="actions">
