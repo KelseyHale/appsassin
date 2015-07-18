@@ -1,7 +1,7 @@
-<h1><%= current_user.first_name %></h1>
-<h3>Your current targets:</h3>
+<h1 class="text-center"><%= current_user.first_name %></h1>
+<h3 class="text-center">Your current targets:</h3>
 
-<div class="row clearfix">
+<div class="row clearfix center">
   <ul class="small-block-grid-3 player-list center">
     <% current_user.players.each do |player| %>
       <% if player.game.rounds.last != nil %>

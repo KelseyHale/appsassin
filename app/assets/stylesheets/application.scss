@@ -102,3 +102,8 @@ ul .player-panel {
   margin-top: 20px;
   color: $steely-blue
 }
+
+ul .player-panel .user-pic :hover {
+  background-image: image-url("default_prof_pic.jpg");
+  opacity: .2;
+}
