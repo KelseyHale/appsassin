@@ -1,17 +1,22 @@
-<h1>Your current targets:</h1>
+<h1><%= current_user.first_name %></h1>
+<h3>Your current targets:</h3>
 
 <% current_user.players.each do |player| %>
   <% if player.game.rounds.last != nil %>
-    <%= player.game.name %></br>
-    <%= player.game.rounds.last.round_assignments.where(player_id: current_user.players.where(game_id: player.game.id).last.id).last.target.user.first_name %></br></br>
+    <ul class="small-block-grid-3">
+      <h5><%= player.game.name %></br></h5>
+      <li>
+        <%= player.game.rounds.last.round_assignments.where(player_id: current_user.players.where(game_id: player.game.id).last.id).last.target.user.first_name %></br></br>
 
-    <div class = user-pic>
-      <%- if player.game.rounds.last.round_assignments.where(player_id: current_user.players.where(game_id: player.game.id).last.id).last.target.user.profile_photo.file == nil -%>
-        <%= image_tag("default_prof_pic.jpg") %>
-      <%- else -%>
-        <%= image_tag(player.game.rounds.last.round_assignments.where(player_id: current_user.players.where(game_id: player.game.id).last.id).last.target.user.profile_photo) %>
-      <%- end -%>
-  </div>
+        <div class = user-pic>
+          <%- if player.game.rounds.last.round_assignments.where(player_id: current_user.players.where(game_id: player.game.id).last.id).last.target.user.profile_photo.file == nil -%>
+            <%= image_tag("default_prof_pic.jpg") %>
+          <%- else -%>
+            <%= image_tag(player.game.rounds.last.round_assignments.where(player_id: current_user.players.where(game_id: player.game.id).last.id).last.target.user.profile_photo) %>
+          <%- end -%>
+        </div>
+      </li>
+    </ul>
 
   <% else %>
     <%= player.game.name %></br>

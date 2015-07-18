@@ -22,12 +22,16 @@
 
 <h3>Members of this game</h3>
 <% @players.each do |player| %>
-  <%= player.user.first_name %>
-  <div class = user-pic>
-    <%- if player.user.profile_photo.file == nil -%>
-      <%= image_tag("default_prof_pic.jpg") %>
-    <%- else -%>
-      <%= image_tag(player.user.profile_photo) %>
-    <%- end -%>
-</div>
+<ul class="small-block-grid-3">
+  <li>
+    <%= player.user.first_name %>
+    <div class = user-pic>
+      <%- if player.user.profile_photo.file == nil -%>
+        <%= image_tag("default_prof_pic.jpg") %>
+      <%- else -%>
+        <%= image_tag(player.user.profile_photo) %>
+      <%- end -%>
+    </div>
+  </li>
+</ul>
 <% end %>
