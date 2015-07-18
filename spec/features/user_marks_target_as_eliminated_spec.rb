@@ -2,14 +2,14 @@ require 'rails_helper'
 
 # Acceptance criteria
 #
-# [√] User must be logged in
-# [√] User only sees all targets assigned to them for each game they are playing
-# [√] Targets are only assigned to one user at a time per round
+# []
+# []
+# []
 
 feature "As a user
-I want to view my target
-So I know who to eliminate" do
-  scenario "user visits user's root page and sees their assigned target" do
+I want to mark my target as eliminated
+So other players know who is out of the game" do
+  scenario "user clicks on their target to mark that target as eliminated" do
     user = FactoryGirl.create(:user)
     user2 = FactoryGirl.create(:user)
 
@@ -29,6 +29,9 @@ So I know who to eliminate" do
     fill_in "Email", with: user.email
     fill_in "Password", with: user.password
     click_button "Log in"
+
+    click_link
+
     expect(page).to have_content "Your current targets:"
     expect(page).to have_content target.user.first_name
   end

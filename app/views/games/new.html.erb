@@ -3,21 +3,16 @@
   <%= form_for @game do |f| %>
 
     <div class="field">
-      <%= f.label :name %><br />
+      <%= f.label :name %>
       <%= f.text_field :name %>
     </div>
 
     <div class="field">
-      <%= f.label :password %>
+      <%= f.label "Access code", value: "To make this game private, create an access code and share it with only the people you want to play If you leave the access code blank, anyone can join your game" %>
       <% if @minimum_password_length %>
       <em>(<%= @minimum_password_length %> characters minimum)</em>
-      <% end %><br />
-      <%= f.password_field :password, autocomplete: "off" %>
-    </div>
-
-    <div class="field">
-      <%= f.label :password_confirmation %><br />
-      <%= f.password_field :password_confirmation, autocomplete: "off" %>
+      <% end %>
+      <%= f.text_field :password, autocomplete: "off", placeholder: "Access code" %>
     </div>
 
     <div class="actions">
