@@ -36,6 +36,9 @@
             <%= image_tag(player.user.profile_photo) %>
           <%- end -%>
         </div>
+        <%- if player.active == false %>
+          <%= "Eliminated." %>
+        <% end %>
     <% end %>
     </li>
   </ul>
