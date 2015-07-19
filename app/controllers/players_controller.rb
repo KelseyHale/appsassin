@@ -47,6 +47,12 @@ class PlayersController < ApplicationController
     end
   end
 
+  def update
+    @game = Game.find(params[:id])
+    @target = Target.find(params[:id])
+    @player = Player.where(game: @game, user: @target)
+  end
+
   def dashboard
   end
 end

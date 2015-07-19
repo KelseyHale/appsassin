@@ -32,15 +32,15 @@ So other players know who is out of the game" do
     fill_in "Password", with: user.password
     click_button "Log in"
 
-    click_link "Target eliminated"
-    expect(page).to have_content "Please confirm that player has been eliminated"
-    click_button "Confirm"
-    expect(page).to have_content ""
+    expect(page).to have_content target.user.first_name
+    click_link "Target Eliminated?"
+
+    expect(page).to have_content "Eliminated."
 
     visit game_path(game)
-    expect(page).to have_content ""
+    expect(page).to have_content "Eliminated."
 
-    expect(page).to have_content "Your current targets:"
-    expect(page).to have_content target.user.first_name
+    # expect(page).to have_content "Your current targets:"
+    # expect(page).to have_content target.user.first_name
   end
 end
