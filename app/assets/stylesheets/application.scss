@@ -78,6 +78,14 @@ body {
   max-height: 300px;
   // width: 3em;
 }
+.user-pic {
+  position: relative;
+}
+
+.user-pic .eliminated {
+  opacity: .9;
+  position: absolute;
+}
 
 .user-name {
   color: #ffffff;
