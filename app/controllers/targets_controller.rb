@@ -1,5 +1,4 @@
 class TargetsController < ApplicationController
-
   def update
     @game = Game.find(params[:game_id])
     @target = Target.find(params[:id])
@@ -13,18 +12,5 @@ class TargetsController < ApplicationController
       flash.now[:alert] = @target.errors.full_messages.join(":( ")
       render :dashboard
     end
-
-    # protected
-    #
-    # def target_params
-    #   params.require(:target).permit(:active)
-    # end
   end
-
-
-
-
-
-
-
 end
