@@ -15,4 +15,8 @@ class Game < ActiveRecord::Base
     end
     false
   end
+  # 
+  # def game_started?
+  #   self.rounds != []
+  # end
 end

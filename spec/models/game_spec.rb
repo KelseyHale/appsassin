@@ -21,4 +21,21 @@ RSpec.describe Game, type: :model do
       end
     end
   end
+
+  # describe '.game_started?' do
+  #   context 'game has started' do
+  #     it 'returns true' do
+  #       game = FactoryGirl.create(:game)
+  #       Round.create(game: game)
+  #       expect(game.game_started?).to eq true
+  #     end
+  #   end
+  #   context 'game has not started' do
+  #     it 'returns false' do
+  #       game = FactoryGirl.create(:game)
+  #       binding.pry
+  #       expect(game.game_started?).to eq false
+  #     end
+  #   end
+  # end
 end
