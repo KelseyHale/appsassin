@@ -23,6 +23,7 @@ so that friends can join my game" do
     click_on "Create new game"
     fill_in "Name", with: "The Killing Game"
     fill_in "Access code", with: "secretstuff"
+    select "2", from: "game_limit"
     click_button "Submit"
 
     expect(page).to have_content "The Killing Game has been

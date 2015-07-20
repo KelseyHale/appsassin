@@ -13,6 +13,7 @@ FactoryGirl.define do
     user
     sequence(:name) { |n| "Point Blank#{n}" }
     password "johncusack"
+    limit 2
   end
 
   factory :player do
