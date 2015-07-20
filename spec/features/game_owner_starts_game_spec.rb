@@ -14,8 +14,8 @@ So targets will be assigned to players" do
   and the game is not yet full" do
     user = FactoryGirl.create(:user)
     user2 = FactoryGirl.create(:user)
-    user3 = FactoryGirl.create(:user)
-    user4 = FactoryGirl.create(:user)
+    FactoryGirl.create(:user)
+    FactoryGirl.create(:user)
     FactoryGirl.create(:user)
     game = FactoryGirl.create(:game, user: user, limit: 4)
     player = Player.create(user: user, game: game)
