@@ -6,6 +6,7 @@ class Game < ActiveRecord::Base
   has_many :users, through: :players
 
   validates :name, presence: true
+  validates :limit, presence: true
 
   def player_in_game?(game, current_user)
     game.players.each do |player|
