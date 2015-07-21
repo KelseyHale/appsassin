@@ -15,11 +15,13 @@ class RoundsController < ApplicationController
     Round.assign_targets_to_actives(@game)
 
     @players.each do |player|
-      @client.messages.create(
-        from: ENV['TWILIO_PHONE_NUMBER'],
-        to: "+19408397009",
-        body: "please work"
-      )
+      if player.user.phone_number != nil
+        @client.messages.create(
+          from: ENV['TWILIO_PHONE_NUMBER'],
+          to: "+#{player.user.phone_number}",
+          body: "please work"
+        )
+      end
     end
     redirect_to game_path(@game)
   end
