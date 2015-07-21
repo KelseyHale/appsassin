@@ -3,6 +3,7 @@ class RoundsController < ApplicationController
     @game = Game.find(params[:game_id])
     @round = Round.current_round
     @players = @game.players
+    @client = Twilio::REST::Client.new
 
     if @game.rounds == []
       @round = Round.create(name: 1, game: @game)
@@ -13,6 +14,13 @@ class RoundsController < ApplicationController
 
     Round.assign_targets_to_actives(@game)
 
+    @players.each do |player|
+      @client.messages.create(
+        from: ENV['TWILIO_PHONE_NUMBER'],
+        to: "+19408397009",
+        body: "please work"
+      )
+    end
     redirect_to game_path(@game)
   end
 end
