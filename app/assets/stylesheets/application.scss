@@ -87,6 +87,10 @@ body {
   position: absolute;
 }
 
+.row {
+  margin: 0 20px;
+}
+
 .user-name {
   color: #ffffff;
   float: left;
@@ -95,11 +99,12 @@ body {
 }
 
 .player-list {
-  display: inline-flex;
-  margin: 20px;
+  display: inline;
+  margin: 0;
+  padding: 0;
 }
 
-ul .player-panel {
+.player-panel {
   background: $steely-blue;
   color: $gold;
   margin: 6px;
@@ -111,7 +116,7 @@ ul .player-panel {
   margin-top: 20px;
 }
 
-ul .player-panel .user-pic :hover {
+.player-panel .user-pic :hover {
   background-image: image-url("default_prof_pic.jpg");
   opacity: 0.2;
 }
