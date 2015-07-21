@@ -7,7 +7,8 @@ class User < ActiveRecord::Base
   validates :email, presence: true
   validates :first_name, presence: true
   validates :last_name, presence: true
-  # Include default devise modules. Others available are:
+  validates :zip_code, length: { is: 11 }
+  validates :zip_code, numericality: { only_integer: true }  # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
