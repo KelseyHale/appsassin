@@ -19,9 +19,9 @@
               <%= current_user.first_name %>
             </div>
             <%- if current_user.profile_photo.file == nil -%>
-              <li><a><%= link_to image_tag("default_prof_pic.jpg"), edit_user_registration_path, id: "edit-profile" %></a></li>
+              <li><a class="circle"><%= link_to image_tag("default_prof_pic.jpg", class:"circle"), edit_user_registration_path, id: "edit-profile" %></a></li>
             <%- else -%>
-              <li><a><%= link_to image_tag(current_user.profile_photo), edit_user_registration_path, id: "edit-profile" %></a></li>
+              <li><a class="circle"><%= link_to image_tag(current_user.profile_photo, class:"circle"), edit_user_registration_path, id: "edit-profile" %></a></li>
             <%- end -%>
             <li>
               <%= link_to 'Current Targets', "/" %>
