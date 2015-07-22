@@ -65,7 +65,7 @@ So targets will be assigned to players" do
     expect(page).to have_content player3.user.first_name
     expect(page).to have_content player4.user.first_name
 
-    click_button "Start game"
+    click_link "Start game"
 
     expect(page).to have_content "Round 1"
     expect(page).to have_content "The game has begun."

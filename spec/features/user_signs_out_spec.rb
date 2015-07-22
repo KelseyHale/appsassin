@@ -23,7 +23,7 @@ feature 'user signs out', %Q{
 
     expect(page).to have_content('Signed in successfully')
 
-    click_link 'Sign Out'
+    click_link('Sign Out', match: :first)
     expect(page).to have_content('Signed out successfully')
   end
 
