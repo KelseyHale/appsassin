@@ -22,4 +22,8 @@ class Player < ActiveRecord::Base
   def assign_target_to_player(current_player)
     generate_targets(current_player).sample
   end
+
+  def target
+    self.game.rounds.last.round_assignments.where(player_id: self).last.target
+  end
 end

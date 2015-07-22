@@ -7,23 +7,23 @@
       <% if player.game.rounds.last != nil && player.game.rounds.last != "" %>
           <li class="small-12 columns panel text-center player-panel">
           <h5><%= link_to player.game.name, game_path(player.game) %></br></h5>
-            <%= player.game.rounds.last.round_assignments.where(player_id: current_user.players.where(game_id: player.game.id).last.id).last.target.user.first_name %></br></br>
+            <%= player.target.user.first_name %></br></br>
             <% if player.active == false %>
               <p><b>You've been eliminated from the game</b></p>
             <% end %>
 
             <div class ="user-pic th">
-              <%- if player.game.rounds.last.round_assignments.where(player_id: current_user.players.where(game_id: player.game.id).last.id).last.target.user.profile_photo.file == nil -%>
+              <%- if player.target.user.profile_photo.file == nil -%>
                 <%= image_tag("default_prof_pic.jpg") %>
               <%- else -%>
                 <% if player.active == false %>
                   <div class="eliminated"><%= image_tag("blackbox.jpg") %></div>
                 <% end %>
-                <%= image_tag(player.game.rounds.last.round_assignments.where(player_id: current_user.players.where(game_id: player.game.id).last.id).last.target.user.profile_photo) %>
+                <%= image_tag(player.target.user.profile_photo) %>
               <%- end -%>
             </div>
-            <% if player.game.rounds.last.round_assignments.where(player_id: current_user.players.where(game_id: player.game.id).last.id).last.target.active == true %>
-              <%= link_to_if player.active == true, "Target Eliminated?", game_target_path(player.game, player.game.rounds.last.round_assignments.where(player_id: current_user.players.where(game_id: player.game.id).last.id).last.target), data: { confirm: "Confirm target eliminated?" }, method: :put %>
+            <% if player.target.active == true %>
+              <%= link_to_if player.active == true, "Target Eliminated?", game_target_path(player.game, player.target), data: { confirm: "Confirm target eliminated?" }, method: :put %>
             <% else %>
               <%= "Eliminated." %>
             <% end %>
