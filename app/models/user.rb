@@ -7,8 +7,8 @@ class User < ActiveRecord::Base
   validates :email, presence: true
   validates :first_name, presence: true
   validates :last_name, presence: true
-  validates :phone_number, length: { is: 11 }
-  validates :phone_number, numericality: { only_integer: true }  # Include default devise modules. Others available are:
+  validates :phone_number, length: { is: 11, allow_blank: true }
+  validates :phone_number, numericality: { only_integer: true, allow_blank: true }  # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
