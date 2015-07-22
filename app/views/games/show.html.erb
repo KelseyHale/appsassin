@@ -32,26 +32,32 @@
 
     <div class="row">
         <% @players.each do |player| %>
-          <!-- <div class="row"> -->
-            <div class="col s12 m4 l3">
-              <div class="card small z-depth-3">
-                <div class ="card-image center user-pic th">
-                  <%- if player.user.profile_photo.file == nil -%>
-                    <%= image_tag("default_prof_pic.jpg") %>
-                  <%- else -%>
-                    <%= image_tag(player.user.profile_photo) %>
-                  <%- end -%>
+          <div class="col s12 m4 l3">
+            <% if player.active == false %>
+              <div class="eliminated">
+            <% end %>
+            <div class="card small z-depth-3">
+              <div class ="card-image center user-pic th">
+                <%- if player.user.profile_photo.file == nil -%>
+                  <%= image_tag("default_prof_pic.jpg") %>
+                <%- else -%>
+                  <%= image_tag(player.user.profile_photo) %>
+                <%- end -%>
+              </div>
+              <div class="card-content">
+                <%= player.user.first_name %>
+                <%= player.user.last_name %>
+                <div class="eliminated-text">
+                  <%- if player.active == false %>
+                    <br><br><%= "Eliminated." %>
+                  <% end %>
                 </div>
-                <div class="card-content">
-                  <%= player.user.first_name %>
-                  <%= player.user.last_name %>
-                </div>
-                <%- if player.active == false %>
-                  <%= "Eliminated." %>
-                <% end %>
               </div>
             </div>
-          <!-- </div> -->
+            <% if player.active == false %>
+              </div>
+            <% end %>
+          </div>
         <% end %>
     </div>
   </div>

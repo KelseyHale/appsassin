@@ -15,11 +15,11 @@ class RoundsController < ApplicationController
     Round.assign_targets_to_actives(@game)
 
     @players.each do |player|
-      if player.user.phone_number != nil
+      if player.user.phone_number != nil && player.user.phone_number != ""
         @client.messages.create(
           from: ENV['TWILIO_PHONE_NUMBER'],
           to: "+#{player.user.phone_number}",
-          body: "please work"
+          body: "Round #{@round.name} of your game #{@game.name} is beginning. Your new target is #{player.target.user.first_name} #{player.target.user.last_name}."
         )
       end
     end
