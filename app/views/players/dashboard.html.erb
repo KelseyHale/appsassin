@@ -32,7 +32,7 @@
           </li>
       <% else %>
       <li class="panel text-center player-panel">
-        <%= player.game.name %></br>
+        <%= link_to player.game.name, game_path(player.game) %></br>
         <%= "---Waiting for target---" %></br></br>
       </li>
       <% end %>

@@ -4,28 +4,37 @@
   <title>Appsassin</title>
   <%= stylesheet_link_tag 'application', media: 'all' %>
   <%= csrf_meta_tags %>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>
 
-  <nav class="top-bar">
-    <ul class="title-area">
-      <li class="name">
-        <h1><a href="/">Appsassin</a></h1>
-      </li>
-    </ul>
-
-    <section class="top-bar-section">
-      <ul class="right">
+  <div class="navbar-fixed">
+    <nav class="nav-wrapper">
+      <a href="/" class="brand-logo">Appsassin</a>
+      <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons right">menu</i></a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
         <%- if current_user -%>
           <div class='profile-photo'>
             <div class='user-name'>
               <%= current_user.first_name %>
             </div>
             <%- if current_user.profile_photo.file == nil -%>
-              <li><a><%= link_to image_tag("default_prof_pic.jpg"), edit_user_registration_path, id: "edit-profile" %></a></li>
+              <li><a class="circle"><%= link_to image_tag("default_prof_pic.jpg", class:"circle"), edit_user_registration_path, id: "edit-profile" %></a></li>
             <%- else -%>
-              <li><a><%= link_to image_tag(current_user.profile_photo), edit_user_registration_path, id: "edit-profile" %></a></li>
+              <li><a class="circle"><%= link_to image_tag(current_user.profile_photo, class:"circle"), edit_user_registration_path, id: "edit-profile" %></a></li>
             <%- end -%>
+            <li>
+              <%= link_to 'Current Targets', "/" %>
+            </li>
+            <li>
+              <%= link_to 'All Games', games_path %>
+            </li>
+            <li>
+              <%= link_to 'Add New Game', new_game_path %>
+            </li>
+            <li>
+              <%= link_to 'Edit Profile', edit_user_registration_path, id: "edit-profile" %>
+            </li>
             <li><%= link_to 'Sign Out', destroy_user_session_path, method: :delete %></li>
           <%- else -%>
             <li><%= link_to 'Sign Up', new_user_registration_path %></li>
@@ -33,8 +42,37 @@
           <%- end -%>
           </div>
       </ul>
-    </section>
-  </nav>
+      <ul class="side-nav" id="mobile-demo">
+        <% if current_user %>
+          <li>
+            <%= link_to 'Current Targets', "/" %>
+          </li>
+          <li>
+            <%= link_to 'All Games', games_path %>
+          </li>
+          <li>
+            <%= link_to 'Edit Profile', edit_user_registration_path, id: "edit-profile" %>
+          </li>
+          <li>
+            <%= link_to 'Sign Out', destroy_user_session_path, method: :delete %>
+          </li>
+        <%- else -%>
+          <li><%= link_to 'Sign Up', new_user_registration_path %></li>
+          <li><%= link_to 'Sign In', new_user_session_path %></li>
+        <%- end -%>
+      </ul>
+      <!-- <i class="material-icons">search</i> -->
+
+      <!-- <form class="center">
+        <div class="input-field">
+          <input id="search" type="search" required>
+            <label for="search"><i class="material-icons">search</i></label>
+          <i class="material-icons">close</i>
+        </div>
+      </form> -->
+
+    </nav>
+  </div>
 
   <%- flash.each do |key, value| -%>
     <div class="flash flash-<%= key %>">
@@ -46,6 +84,32 @@
       <%= yield %>
     </div>
   </div>
+
+  <footer class="page-footer">
+    <div class="container">
+      <div class="row">
+        <div class="col l6 s12">
+          <h5 class="white-text">Appsassin</h5>
+          <p class="grey-text text-lighten-4">created by Kelsey Hale</p>
+        </div>
+        <div class="col l4 offset-l2 s12">
+          <h5 class="white-text">Contact Info</h5>
+          <ul>
+            <li><a class="grey-text text-lighten-3" href="#!">https://github.com/KelseyHale</a></li>
+            <!-- <li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
+            <li><a class="grey-text text-lighten-3" href="#!">Link 3</a></li>
+            <li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li> -->
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-copyright">
+      <div class="container">
+      © 2015 Copyright
+      <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
+      </div>
+    </div>
+  </footer>
   <%= javascript_include_tag 'application' %>
   <%= yield :extra_footer %>
 </body>
