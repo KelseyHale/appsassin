@@ -13,11 +13,11 @@ So that I can keep my profile up to date" do
     user = FactoryGirl.create(:user)
     email_update = 'newuseremail@email.com'
     visit '/'
-    click_link("Sign In")
+    click_link("Sign In", match: :first)
     fill_in 'Email', with: user.email
     fill_in 'Password', with: user.password
     click_button('Log in')
-    click_link('edit-profile')
+    visit edit_user_registration_path(user)
     expect(page).to have_content("Edit User")
     fill_in 'Email', with: email_update
     attach_file "Profile Photo",
@@ -26,7 +26,7 @@ So that I can keep my profile up to date" do
     click_button 'Update'
     expect(page).to have_content("Your account has been updated successfully.")
     expect(page).to have_css("img[src*='profile_photo.jpg']")
-    click_link('edit-profile')
+    visit edit_user_registration_path(user)
     expect(find_field('Email').value).to eq email_update
   end
 end

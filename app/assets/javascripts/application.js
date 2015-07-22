@@ -14,5 +14,8 @@
 //= require jquery_ujs
 //= require foundation
 //= require_tree .
+//= require materialize-sprockets
 
-$(function(){ $(document).foundation(); });
+$( document ).ready(function(){
+  $(".button-collapse").sideNav();
+});

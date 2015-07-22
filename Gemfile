@@ -25,6 +25,7 @@ gem 'carrierwave'
 gem 'fog'
 gem 'dotenv-rails'
 gem 'twilio-ruby'
+gem 'materialize-sass'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

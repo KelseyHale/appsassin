@@ -1,50 +1,58 @@
-<div class="text-center">
-  <h1><%= @game.name %></h1>
-
-  <% if @game.rounds.last == nil%>
-    <%= "Game full" unless @game.limit != @game.players.count %></br>
-    <%= "Waiting for game to begin" %>
-    <div class="button-group text-center">
-      <% if @game.player_in_game?(@game, current_user) %>
-        <%= link_to "Leave game", class:"button" %>
-      <% elsif @game.password != "" %>
-        <%= link_to "Join game", new_game_player_path(@game), class:"button" unless @game.limit == @game.players.count %>
+<main>
+  <div class="container">
+    <div class="center-align">
+      <h1><%= @game.name %></h1>
+      <% if @game.rounds.last == nil%>
+        <%= "Game full" unless @game.limit != @game.players.count %></br>
+        <%= "Waiting for game to begin" %>
+        <div class="button-group text-center">
+          <% if @game.player_in_game?(@game, current_user) %>
+            <%= link_to "Leave game", class:"waves-effect waves-light btn" %>
+          <% elsif @game.password != "" %>
+            <%= link_to "Join game", new_game_player_path(@game), class:"waves-effect waves-light btn" unless @game.limit == @game.players.count %>
+          <% else %>
+            <%= link_to "Join game", game_players_path(@game), class:"waves-effect waves-light btn" unless @game.limit == @game.players.count %>
+          <% end %>
       <% else %>
-        <%= link_to "Join game", game_players_path(@game), class:"button" unless @game.limit == @game.players.count %>
+        <h5><%= "Round #{@game.rounds.current_round.name}" %></h5>
       <% end %>
-  <% else %>
-    <h5><%= "Round #{@game.rounds.current_round.name}" %></h5>
-  <% end %>
-  <div>
-    <% if @game.limit == @game.players.count %>
-      <% if @game.user == current_user %>
-        <%= button_to "Start game", game_rounds_path(@game), method: :post %>
-      <% end %>
-    <% else %>
-      <%= "Waiting on #{@game.limit - @game.players.count} player(s) to join." %>
-    <% end %>
-  </div>
-    </div>
-</div>
-
-<h3 class="text-center">Members of this game</h3>
-
-<div class="row clearfix">
-  <ul class="small-block-grid-3 large-block-grid-3 player-list">
-    <% @players.each do |player| %>
-      <li class="panel text-center player-panel">
-        <%= player.user.first_name %>
-        <div class ="user-pic th">
-          <%- if player.user.profile_photo.file == nil -%>
-            <%= image_tag("default_prof_pic.jpg") %>
-          <%- else -%>
-            <%= image_tag(player.user.profile_photo) %>
-          <%- end -%>
-        </div>
-        <%- if player.active == false %>
-          <%= "Eliminated." %>
+      <div>
+        <% if @game.limit == @game.players.count %>
+          <% if @game.user == current_user %>
+            <%= link_to "Start game", game_rounds_path(@game), class:"waves-effect waves-light btn", method: :post %>
+          <% end %>
+        <% else %>
+          <%= "Waiting on #{@game.limit - @game.players.count} player(s) to join." %>
         <% end %>
-    <% end %>
-    </li>
-  </ul>
-</div>
+      </div>
+        </div>
+    </div>
+
+    <h3 class="center-align">Members of this game</h3>
+
+    <div class="row">
+        <% @players.each do |player| %>
+          <!-- <div class="row"> -->
+            <div class="col s12 m4 l3">
+              <div class="card small z-depth-3">
+                <div class ="card-image center user-pic th">
+                  <%- if player.user.profile_photo.file == nil -%>
+                    <%= image_tag("default_prof_pic.jpg") %>
+                  <%- else -%>
+                    <%= image_tag(player.user.profile_photo) %>
+                  <%- end -%>
+                </div>
+                <div class="card-content">
+                  <%= player.user.first_name %>
+                  <%= player.user.last_name %>
+                </div>
+                <%- if player.active == false %>
+                  <%= "Eliminated." %>
+                <% end %>
+              </div>
+            </div>
+          <!-- </div> -->
+        <% end %>
+    </div>
+  </div>
+</main>
