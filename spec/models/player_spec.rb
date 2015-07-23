@@ -14,8 +14,8 @@ RSpec.describe Player, type: :model do
         Player.create!(user: user2, game: game)
         Target.create!(user: user, game: game)
         target2 = Target.create!(user: user2, game: game)
-        Round.create!(name: 1, game: game)
-        Round.assign_targets_to_actives(game)
+        round = Round.create!(name: 1, game: game)
+        round.assign_targets_to_actives(game)
         expect(player1.target).to eq target2
       end
     end

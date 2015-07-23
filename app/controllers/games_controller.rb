@@ -23,6 +23,7 @@ class GamesController < ApplicationController
 
     if @game.save
       flash[:notice] = "#{@game.name} has been successfully created."
+      Round.create(name: 0, game: @game)
       redirect_to game_path(@game)
     else
       flash[:error] = @game.errors.full_messages.join(". ")

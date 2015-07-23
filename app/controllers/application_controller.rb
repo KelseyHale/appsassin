@@ -14,7 +14,8 @@ class ApplicationController < ActionController::Base
         :password_confirmation,
         :first_name,
         :last_name,
-        :profile_photo
+        :profile_photo,
+        :phone_number
       )
     end
 
@@ -24,7 +25,8 @@ class ApplicationController < ActionController::Base
         :first_name,
         :last_name,
         :profile_photo,
-        :current_password
+        :current_password,
+        :phone_number
       )
     end
   end

@@ -4,7 +4,7 @@
 <div class="row clearfix center">
   <ul class="small-block-grid-1 medium-block-grid-3 player-list center">
     <% current_user.players.each do |player| %>
-      <% if player.game.rounds.last != nil && player.game.rounds.last != "" %>
+      <% if player.game.rounds.last != nil && player.game.rounds.last.name != 0 %>
         <li class="small-12 columns panel text-center player-panel">
           <h5><%= link_to player.game.name, game_path(player.game) %></br></h5>
             <% if player.active == false %>

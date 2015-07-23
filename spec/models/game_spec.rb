@@ -21,4 +21,27 @@ RSpec.describe Game, type: :model do
       end
     end
   end
+
+  describe ".game_over?" do
+    context "game is not over" do
+      it "returns false" do
+        user = FactoryGirl.create(:user)
+        user2 = FactoryGirl.create(:user)
+        game = FactoryGirl.create(:game)
+        Player.create(user: user, game: game)
+        Player.create(user: user2, game: game)
+        expect(game.game_over?).to eq false
+      end
+    end
+    context "game is over" do
+      it "returns true" do
+        user = FactoryGirl.create(:user)
+        user2 = FactoryGirl.create(:user)
+        game = FactoryGirl.create(:game)
+        Player.create(user: user, game: game)
+        Player.create(user: user2, game: game, active: false)
+        expect(game.game_over?).to eq true
+      end
+    end
+  end
 end
