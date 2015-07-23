@@ -16,7 +16,9 @@ class TargetsController < ApplicationController
             @client.messages.create(
               from: ENV['TWILIO_PHONE_NUMBER'],
               to: "+#{player.user.phone_number}",
-              body: "GAME OVER (#{@game.name})--#{@players.where(active: true).last.user.first_name} #{@players.where(active: true).last.user.last_name} wins!"
+              body: "GAME OVER (#{@game.name})--
+              #{@players.where(active: true).last.user.first_name}
+              #{@players.where(active: true).last.user.last_name} wins!"
             )
           end
         end
