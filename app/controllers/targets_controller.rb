@@ -5,6 +5,7 @@ class TargetsController < ApplicationController
     @player = Player.where(game: @game, user: @target.user).first
     @players = Player.where(game: @game)
     @active_players = @game.active_player_count
+    @client = Twilio::REST::Client.new
 
     if @target.update(active: false)
       @player.update(active: false)
@@ -15,7 +16,7 @@ class TargetsController < ApplicationController
             @client.messages.create(
               from: ENV['TWILIO_PHONE_NUMBER'],
               to: "+#{player.user.phone_number}",
-              body: "GAME OVER--#{@players.where(active: true)} wins!"
+              body: "GAME OVER (#{@game.name})--#{@players.where(active: true).last.user.first_name} #{@players.where(active: true).last.user.last_name} wins!"
             )
           end
         end
