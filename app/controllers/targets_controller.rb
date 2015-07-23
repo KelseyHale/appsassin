@@ -3,10 +3,23 @@ class TargetsController < ApplicationController
     @game = Game.find(params[:game_id])
     @target = Target.find(params[:id])
     @player = Player.where(game: @game, user: @target.user).first
+    @players = Player.where(game: @game)
+    @active_players = active_player_count
 
     if @target.update(active: false)
       @player.update(active: false)
       flash[:notice] = 'Target Eliminated'
+      if @active_players == 2
+        @players.each do |player|
+          if player.user.phone_number != nil && player.user.phone_number != ""
+            @client.messages.create(
+              from: ENV['TWILIO_PHONE_NUMBER'],
+              to: "+#{player.user.phone_number}",
+              body: "GAME OVER--#{@players.where(active: true)} wins!"
+            )
+          end
+        end
+      end
       redirect_to authenticated_root_path
     else
       flash.now[:alert] = @target.errors.full_messages.join(":( ")

@@ -10,26 +10,28 @@ class Round < ActiveRecord::Base
     Round.last
   end
 
-  def self.assign_targets_to_actives(game)
+  def assign_targets_to_actives(game)
     targets = game.targets.where(active: true).to_a
     players = game.players.where(active: true)
+    # round = Round.last
 
     players.each do |player|
       if targets.last.user != player.user
         RoundAssignment.create!(
-          round_id: (current_round.id),
+          round_id: (Round.last.id),
           player_id: player.id,
           target_id: targets.last.id
         )
         targets.pop
       else
         RoundAssignment.create!(
-          round_id: (current_round.id),
+          round_id: (Round.last.id),
           player_id: player.id,
           target_id: targets.first.id
         )
         targets.shift
       end
+      # player.send_text_new_targets
     end
   end
 end
