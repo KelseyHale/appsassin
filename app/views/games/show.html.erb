@@ -3,9 +3,8 @@
     <div class="center-align">
       <h1><%= @game.name %></h1>
 
-      <% if @game.game_over? %>
-      <%binding.pry%>
-        <% render "gamewinner" %>
+      <% if @game.rounds.last != nil && @game.game_over? %>
+        <%= render "gamewinner" %>
       <% else %>
 
         <% if @game.rounds.last == nil%>
@@ -39,7 +38,7 @@
 
     <div class="row">
         <% @players.each do |player| %>
-          <div class="col s12 m4 l3">
+          <div class="col s12 m3">
             <% if player.active == false %>
               <div class="eliminated">
             <% end %>
@@ -56,7 +55,7 @@
                 <%= player.user.last_name %>
                 <div class="eliminated-text">
                   <%- if player.active == false %>
-                    <br><br><%= "Eliminated." %>
+                    <br><br><%= "PLAYER ELIMINATED" %>
                   <% end %>
                 </div>
               </div>
