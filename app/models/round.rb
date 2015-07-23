@@ -13,7 +13,6 @@ class Round < ActiveRecord::Base
   def assign_targets_to_actives(game)
     targets = game.targets.where(active: true).to_a
     players = game.players.where(active: true)
-    # round = Round.last
 
     players.each do |player|
       if targets.last.user != player.user
@@ -31,7 +30,6 @@ class Round < ActiveRecord::Base
         )
         targets.shift
       end
-      # player.send_text_new_targets
     end
   end
 end

@@ -27,7 +27,7 @@ So targets will be assigned to players" do
     fill_in "Email", with: user.email
     fill_in "Password", with: user.password
     click_button "Log in"
-
+    # binding.pry
     click_link "View created games"
     click_link game.name
     expect(page).to have_content player.user.first_name

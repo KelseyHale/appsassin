@@ -3,11 +3,11 @@
     <div class="center-align">
       <h1><%= @game.name %></h1>
 
-      <% if @game.rounds.last.name != 0 && @game.game_over? %>
+      <% if @game.rounds != [] && @game.rounds.last.name != 0 && @game.game_over? %>
         <%= render "gamewinner" %>
       <% else %>
 
-        <% if @game.rounds.last.name == 0%>
+        <% if @game.rounds == [] || @game.rounds.last.name == 0 %>
           <%= "Game full" unless @game.limit != @game.players.count %></br>
           <%= "Waiting for game to begin" %>
           <div class="button-group text-center">

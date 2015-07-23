@@ -4,7 +4,7 @@ class TargetsController < ApplicationController
     @target = Target.find(params[:id])
     @player = Player.where(game: @game, user: @target.user).first
     @players = Player.where(game: @game)
-    @active_players = active_player_count
+    @active_players = @game.active_player_count
 
     if @target.update(active: false)
       @player.update(active: false)
