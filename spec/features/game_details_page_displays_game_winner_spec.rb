@@ -1,6 +1,5 @@
 require 'rails_helper'
 
-
 feature "As a game player
 I want to see the winner of the game
 When the game is over" do

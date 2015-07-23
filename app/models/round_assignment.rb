@@ -14,7 +14,10 @@ class RoundAssignment < ActiveRecord::Base
       @client.messages.create(
         from: ENV['TWILIO_PHONE_NUMBER'],
         to: "9408397009",
-        body: "hey #{self.player.user.first_name}! Round #{self.round.name} of your game #{self.round.game.name} is beginning. Your new target is #{self.target.user.first_name} #{self.target.user.last_name} "
+        body: "#{self.player.user.first_name}--
+        Round #{self.round.name} of your game #{self.round.game.name}
+        is beginning. Your new target is #{self.target.user.first_name}
+        #{self.target.user.last_name}"
       )
     end
   end
