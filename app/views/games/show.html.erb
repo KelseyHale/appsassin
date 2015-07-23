@@ -2,30 +2,37 @@
   <div class="container">
     <div class="center-align">
       <h1><%= @game.name %></h1>
-      <% if @game.rounds.last == nil%>
-        <%= "Game full" unless @game.limit != @game.players.count %></br>
-        <%= "Waiting for game to begin" %>
-        <div class="button-group text-center">
-          <% if @game.player_in_game?(@game, current_user) %>
-            <%= link_to "Leave game", class:"waves-effect waves-light btn" %>
-          <% elsif @game.password != "" %>
-            <%= link_to "Join game", new_game_player_path(@game), class:"waves-effect waves-light btn" unless @game.limit == @game.players.count %>
-          <% else %>
-            <%= link_to "Join game", game_players_path(@game), class:"waves-effect waves-light btn" unless @game.limit == @game.players.count %>
-          <% end %>
+
+      <% if @game.game_over? %>
+      <%binding.pry%>
+        <% render "gamewinner" %>
       <% else %>
-        <h5><%= "Round #{@game.rounds.current_round.name}" %></h5>
-      <% end %>
-      <div>
-        <% if @game.limit == @game.players.count %>
-          <% if @game.user == current_user %>
-            <%= link_to "Start game", game_rounds_path(@game), class:"waves-effect waves-light btn", method: :post %>
-          <% end %>
+
+        <% if @game.rounds.last == nil%>
+          <%= "Game full" unless @game.limit != @game.players.count %></br>
+          <%= "Waiting for game to begin" %>
+          <div class="button-group text-center">
+            <% if @game.player_in_game?(@game, current_user) %>
+              <%= link_to "Leave game", class:"waves-effect waves-light btn" %>
+            <% elsif @game.password != "" %>
+              <%= link_to "Join game", new_game_player_path(@game), class:"waves-effect waves-light btn" unless @game.limit == @game.players.count %>
+            <% else %>
+              <%= link_to "Join game", game_players_path(@game), class:"waves-effect waves-light btn" unless @game.limit == @game.players.count %>
+            <% end %>
         <% else %>
-          <%= "Waiting on #{@game.limit - @game.players.count} player(s) to join." %>
+          <h5><%= "Round #{@game.rounds.current_round.name}" %></h5>
         <% end %>
-      </div>
+          <div>
+            <% if @game.limit == @game.players.count %>
+              <% if @game.user == current_user %>
+                <%= link_to "Start game", game_rounds_path(@game), class:"waves-effect waves-light btn", method: :post %>
+              <% end %>
+            <% else %>
+              <%= "Waiting on #{@game.limit - @game.players.count} player(s) to join." %>
+            <% end %>
+          </div>
         </div>
+        <% end %>
     </div>
 
     <h3 class="center-align">Members of this game</h3>

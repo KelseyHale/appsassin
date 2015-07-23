@@ -16,4 +16,26 @@ class Game < ActiveRecord::Base
     end
     false
   end
+
+  def game_winner
+    self.players.each do |player|
+      if player.active
+        return "#{player.user.first_name} #{player.user.last_name}"
+      end
+    end
+  end
+
+  def active_player_count
+    active_player_count = 0
+    self.players.each do |player|
+      if player.active
+        active_player_count += 1
+      end
+    end
+    active_player_count
+  end
+
+  def game_over?
+    active_player_count == 1
+  end
 end
