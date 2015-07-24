@@ -1,5 +1,3 @@
-== README
-
 ![Build Status](https://codeship.com/projects/c0981aa0-0aea-0133-0d5c-2696e3e4b295/status?branch=master)![Code Climate](https://codeclimate.com/github/KelseyHale/appsassin.png)
 
 * Ruby version 2.0.0
@@ -20,11 +18,12 @@ Visit Appsassin at the following URL: http://appsassin.herokuapp.com/
     - Users can join multiple games and as such have the potential to inherit multiple targets at one time
     - After elimination the player must be marked as "inactive"
 
-    *Solution:* Utilizing joins tables to relate rounds of a game to the assignments of targets to players.
+    *Solution:* Created database relationships that handle complexity of user relationships (users = both "player"                   and "target")
 
  - Integration of Twilio with correct timing
     - Players should be notified when they have received their target at the start of a new round
     - Players should be notified of the game winner when the game is over
 
-    *Solution:* Employed a callback in the round assignment model to send the text after the round assignments have been created. A method in the game model calculates the number of players in a game so that when the next to last player is eliminated the remaining player is declared the winner.
+    *Solution:* Employed a callback to integrate Twilio to ensure users receive updates about the game status
+
 ---
