@@ -36,6 +36,5 @@ feature 'user registers', %Q{
 
     click_button 'Sign up'
     expect(page).to have_content("can't be blank")
-    expect(page).to_not have_content('Sign Out')
   end
 end

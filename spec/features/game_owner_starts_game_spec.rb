@@ -32,12 +32,12 @@ So targets will be assigned to players" do
     click_link game.name
     expect(page).to have_content player.user.first_name
     expect(page).to have_content player2.user.first_name
-    expect(page).to_not have_button "Start game"
+    expect(page).to_not have_button "Start round"
     expect(page).to have_content "Waiting on 2 player(s)"
   end
   scenario "game owner visits game details page,
   the game is full,
-  clicks start game button and targets are assigned to users" do
+  clicks Start round button and targets are assigned to users" do
     user = FactoryGirl.create(:user)
     user2 = FactoryGirl.create(:user)
     user3 = FactoryGirl.create(:user)
@@ -65,7 +65,7 @@ So targets will be assigned to players" do
     expect(page).to have_content player3.user.first_name
     expect(page).to have_content player4.user.first_name
 
-    click_link "Start game"
+    click_link "Start round"
 
     expect(page).to have_content "Round 1"
     expect(page).to have_content "The game has begun."

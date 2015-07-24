@@ -11,7 +11,7 @@
         <%= "Waiting for game to begin" %>
         <div class="button-group text-center">
           <% if @game.player_in_game?(@game, current_user) %>
-            <%= link_to "Leave game", class:"waves-effect waves-light btn" %>
+             <p>You are already a member of this game</p>
           <% elsif @game.password != "" %>
             <%= link_to "Join game", new_game_player_path(@game), class:"waves-effect waves-light btn" unless @game.limit == @game.players.count %>
           <% else %>
@@ -23,7 +23,7 @@
         <div>
           <% if @game.limit == @game.players.count %>
             <% if @game.user == current_user %>
-              <%= link_to "Start game", game_rounds_path(@game), class:"waves-effect waves-light btn", method: :post %>
+              <%= link_to "Start round", game_rounds_path(@game), class:"waves-effect waves-light btn", method: :post %>
             <% end %>
           <% else %>
             <%= "Waiting on #{@game.limit - @game.players.count} player(s) to join." %>
