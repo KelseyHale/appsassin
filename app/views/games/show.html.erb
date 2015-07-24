@@ -37,11 +37,15 @@
 
   <div class="row">
       <% @players.each do |player| %>
-        <div class="col s12 m3">
+        <div class="col s6 offset-s3 m3">
           <% if player.active == false %>
             <div class="eliminated">
           <% end %>
           <div class="card small z-depth-3">
+            <h5>
+              <%= player.user.first_name %>
+              <%= player.user.last_name %>
+            </h5>
             <div class ="card-image center user-pic th">
               <%- if player.user.profile_photo.file == nil -%>
                 <%= image_tag("default_prof_pic.jpg") %>
@@ -49,12 +53,10 @@
                 <%= image_tag(player.user.profile_photo) %>
               <%- end -%>
             </div>
-            <div class="card-content">
-              <%= player.user.first_name %>
-              <%= player.user.last_name %>
+            <div class="card-content center-align">
               <div class="eliminated-text">
                 <%- if player.active == false %>
-                  <br><br><%= "PLAYER ELIMINATED" %>
+                  <h5><%= "PLAYER ELIMINATED" %></h5>
                 <% end %>
               </div>
             </div>

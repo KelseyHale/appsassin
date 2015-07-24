@@ -129,7 +129,7 @@ main {
 }
 
 .eliminated-text {
-  opacity: 0.9;
+  color: $brightred;
 }
 
 .game-name-field{
@@ -138,4 +138,8 @@ main {
 
 .access-code{
   position: inherit;
+}
+
+.card {
+  padding: 0 10px;
 }
