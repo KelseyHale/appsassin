@@ -27,4 +27,5 @@ Visit Appsassin at the following URL: http://appsassin.herokuapp.com/
     - Players should be notified of the game winner when the game is over
 
     *Solution:* Employed a callback in the round assignment model to send the text after the round assignments have been created. A method in the game model calculates the number of players in a game so that when the next to last player is eliminated the remaining player is declared the winner.
+    
 ---
