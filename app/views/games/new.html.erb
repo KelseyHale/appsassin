@@ -1,26 +1,27 @@
 <h1>Create new game<h1>
 
   <%= form_for @game do |f| %>
-
+  <div class="col s6 offset-s3">
     <div class="field">
       <%= f.label :name %>
       <%= f.text_field :name %>
-    </div>
+    </div><br>
 
-    <div class="field">
+    <div class="input-field">
       <%= f.label "Number of Players" %>
       <%= f.select :limit, options_for_select(2..40) %>
-    </div>
+    </div><br>
 
-    <div class="field">
+    <div class="input-field">
       <%= f.label "Access code", value: "To make this game private, create an access code and share it with only the people you want to play If you leave the access code blank, anyone can join your game" %>
       <% if @minimum_password_length %>
       <em>(<%= @minimum_password_length %> characters minimum)</em>
       <% end %>
       <%= f.text_field :password, autocomplete: "off", placeholder: "Access code" %>
-    </div>
+    </div><br>
 
     <div class="actions">
       <%= f.submit "Submit", class:"btn" %>
     </div>
+  </div>
   <% end %>
