@@ -10,7 +10,7 @@
             <% if player.active == false %>
               <p><b>You've been eliminated from the game</b></p>
             <% else %>
-              <%= player.target.user.first_name %></br></br>
+              <h6><%= player.target.user.first_name %></br></br></h6>
 
               <div class ="card-image center user-pic th">
                 <%- if player.target.user.profile_photo.file == nil -%>
@@ -35,10 +35,10 @@
             <% end %>
           </div>
       <% else %>
-      <li class="panel text-center player-panel">
-        <%= link_to player.game.name, game_path(player.game) %></br>
-        <%= "---Waiting for target---" %></br></br>
-      </li>
+      <div class="card small z-depth-3">
+        <h5><%= link_to player.game.name, game_path(player.game) %></h5></br>
+        <div class="center-align"><b>---Waiting for target---</b></div>
+      </div>
       <% end %>
     </div>
   <% end %>
