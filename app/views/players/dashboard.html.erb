@@ -1,18 +1,18 @@
-<h1 class="text-center"><%= current_user.first_name %></h1>
-<h3 class="text-center">Your current targets:</h3>
+<h1 class="center-align"><%= current_user.first_name %></h1>
+<h3 class="center-align">Your current targets:</h3>
 
-<div class="row clearfix center">
-  <ul class="small-block-grid-1 medium-block-grid-3 player-list center">
-    <% current_user.players.each do |player| %>
+<div class="row">
+  <% current_user.players.each do |player| %>
+    <div class="col s6 offset-s3 m4 offset-m4 l2 offset-l5">
       <% if player.game.rounds.last != nil && player.game.rounds.last.name != 0 %>
-        <li class="small-12 columns panel text-center player-panel">
+        <div class="card small z-depth-3">
           <h5><%= link_to player.game.name, game_path(player.game) %></br></h5>
             <% if player.active == false %>
               <p><b>You've been eliminated from the game</b></p>
             <% else %>
-              <%= player.target.user.first_name %></br></br>
+              <h6><%= player.target.user.first_name %></br></br></h6>
 
-              <div class ="user-pic th">
+              <div class ="card-image center user-pic th">
                 <%- if player.target.user.profile_photo.file == nil -%>
                   <%= image_tag("default_prof_pic.jpg") %>
                 <%- else -%>
@@ -24,20 +24,24 @@
               </div>
 
               <% if player.target.active == true %>
-                <%= link_to_if player.active == true, "Target Eliminated?", game_target_path(player.game, player.target), data: { confirm: "Confirm target eliminated?" }, method: :put %>
+                <div class="card-content center-align">
+                  <%= link_to_if player.active == true, "Target Eliminated?", game_target_path(player.game, player.target), data: { confirm: "Confirm target eliminated?" }, method: :put %>
+                </div>
               <% else %>
-                <%= "Eliminated." %>
+                <div class="card-content center-align">
+                <%= "ELIMINATED" %>
+              </div>
               <% end %>
             <% end %>
-          </li>
+          </div>
       <% else %>
-      <li class="panel text-center player-panel">
-        <%= link_to player.game.name, game_path(player.game) %></br>
-        <%= "---Waiting for target---" %></br></br>
-      </li>
+      <div class="card small z-depth-3">
+        <h5><%= link_to player.game.name, game_path(player.game) %></h5></br>
+        <div class="center-align"><b>---<br>Waiting<br>for<br>target<br>---</b></div>
+      </div>
       <% end %>
-    <% end %>
-  </ul>
+    </div>
+  <% end %>
 </div>
 
 

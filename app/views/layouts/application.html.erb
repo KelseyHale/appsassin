@@ -7,7 +7,17 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>
-
+<main>
+  <ul id="games-dropdown" class="dropdown-content">
+    <li><%= link_to 'Current Targets', "/" %></li>
+    <li><%= link_to 'All Games', games_path %></li>
+    <li><%= link_to 'Add New Game', new_game_path %></li>
+  </ul>
+  <ul id="profile-dropdown" class="dropdown-content">
+    <li><%= link_to 'Edit Profile', edit_user_registration_path, id: "edit-profile" %></li>
+    <li class="divider"></li>
+    <li><%= link_to 'Sign Out', destroy_user_session_path, method: :delete %></li>
+  </ul>
   <div class="navbar-fixed">
     <nav class="nav-wrapper">
       <a href="/" class="brand-logo">Appsassin</a>
@@ -15,27 +25,17 @@
       <ul id="nav-mobile" class="right hide-on-med-and-down">
         <%- if current_user -%>
           <div class='profile-photo'>
-            <div class='user-name'>
-              <%= current_user.first_name %>
-            </div>
+            <li>
+              <a class="dropdown-button" href="#!" data-activates="games-dropdown">Games<i class="material-icons right">arrow_drop_down</i></a>
+            </li>
+            <li>
+              <a class="dropdown-button" href="#!" data-activates="profile-dropdown"><%= current_user.first_name %><i class="material-icons right">arrow_drop_down</i></a>
+            </li>
             <%- if current_user.profile_photo.file == nil -%>
               <li><a class="circle"><%= link_to image_tag("default_prof_pic.jpg", class:"circle"), edit_user_registration_path, id: "edit-profile" %></a></li>
             <%- else -%>
               <li><a class="circle"><%= link_to image_tag(current_user.profile_photo, class:"circle"), edit_user_registration_path, id: "edit-profile" %></a></li>
             <%- end -%>
-            <li>
-              <%= link_to 'Current Targets', "/" %>
-            </li>
-            <li>
-              <%= link_to 'All Games', games_path %>
-            </li>
-            <li>
-              <%= link_to 'Add New Game', new_game_path %>
-            </li>
-            <li>
-              <%= link_to 'Edit Profile', edit_user_registration_path, id: "edit-profile" %>
-            </li>
-            <li><%= link_to 'Sign Out', destroy_user_session_path, method: :delete %></li>
           <%- else -%>
             <li><%= link_to 'Sign Up', new_user_registration_path %></li>
             <li><%= link_to 'Sign In', new_user_session_path %></li>
@@ -46,6 +46,9 @@
         <% if current_user %>
           <li>
             <%= link_to 'Current Targets', "/" %>
+          </li>
+          <li>
+            <%= link_to 'Add New Game', new_game_path %>
           </li>
           <li>
             <%= link_to 'All Games', games_path %>
@@ -84,6 +87,7 @@
       <%= yield %>
     </div>
   </div>
+</main>
 
   <footer class="page-footer">
     <div class="container">
@@ -95,7 +99,7 @@
         <div class="col l4 offset-l2 s12">
           <h5 class="white-text">Contact Info</h5>
           <ul>
-            <li><a class="grey-text text-lighten-3" href="#!">https://github.com/KelseyHale</a></li>
+            <li><a class="grey-text text-lighten-3" href="https://github.com/KelseyHale/appsassin">https://github.com/KelseyHale/appsassin</a></li>
             <!-- <li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
             <li><a class="grey-text text-lighten-3" href="#!">Link 3</a></li>
             <li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li> -->
@@ -105,7 +109,7 @@
     </div>
     <div class="footer-copyright">
       <div class="container">
-      © 2015 Copyright
+      Built on Rails with Materialize CSS
       <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
       </div>
     </div>

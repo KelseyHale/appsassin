@@ -1,70 +1,70 @@
-<main>
-  <div class="container">
-    <div class="center-align">
-      <h1><%= @game.name %></h1>
+<div class="container">
+  <div class="center-align">
+    <h1><%= @game.name %></h1>
 
-      <% if @game.rounds != [] && @game.rounds.last.name != 0 && @game.game_over? %>
-        <%= render "gamewinner" %>
+    <% if @game.rounds != [] && @game.rounds.last.name != 0 && @game.game_over? %>
+      <%= render "gamewinner" %>
+    <% else %>
+
+      <% if @game.rounds == [] || @game.rounds.last.name == 0 %>
+        <%= "Game full" unless @game.limit != @game.players.count %></br>
+        <%= "Waiting for game to begin" %>
+        <div class="button-group text-center">
+          <% if @game.player_in_game?(@game, current_user) %>
+             <p>You are already a member of this game</p>
+          <% elsif @game.password != "" %>
+            <%= link_to "Join game", new_game_player_path(@game), class:"waves-effect waves-light btn" unless @game.limit == @game.players.count %>
+          <% else %>
+            <%= link_to "Join game", game_players_path(@game), class:"waves-effect waves-light btn" unless @game.limit == @game.players.count %>
+          <% end %>
       <% else %>
-
-        <% if @game.rounds == [] || @game.rounds.last.name == 0 %>
-          <%= "Game full" unless @game.limit != @game.players.count %></br>
-          <%= "Waiting for game to begin" %>
-          <div class="button-group text-center">
-            <% if @game.player_in_game?(@game, current_user) %>
-              <%= link_to "Leave game", class:"waves-effect waves-light btn" %>
-            <% elsif @game.password != "" %>
-              <%= link_to "Join game", new_game_player_path(@game), class:"waves-effect waves-light btn" unless @game.limit == @game.players.count %>
-            <% else %>
-              <%= link_to "Join game", game_players_path(@game), class:"waves-effect waves-light btn" unless @game.limit == @game.players.count %>
+        <h5><%= "Round #{@game.rounds.current_round.name}" %></h5>
+      <% end %>
+        <div>
+          <% if @game.limit == @game.players.count %>
+            <% if @game.user == current_user %>
+              <%= link_to "Start round", game_rounds_path(@game), class:"waves-effect waves-light btn", method: :post %>
             <% end %>
-        <% else %>
-          <h5><%= "Round #{@game.rounds.current_round.name}" %></h5>
-        <% end %>
-          <div>
-            <% if @game.limit == @game.players.count %>
-              <% if @game.user == current_user %>
-                <%= link_to "Start game", game_rounds_path(@game), class:"waves-effect waves-light btn", method: :post %>
-              <% end %>
-            <% else %>
-              <%= "Waiting on #{@game.limit - @game.players.count} player(s) to join." %>
-            <% end %>
-          </div>
+          <% else %>
+            <%= "Waiting on #{@game.limit - @game.players.count} player(s) to join." %>
+          <% end %>
         </div>
-        <% end %>
-    </div>
+      </div>
+      <% end %>
+  </div>
 
-    <h3 class="center-align">Members of this game</h3>
+  <h3 class="center-align">Members of this game</h3>
 
-    <div class="row">
-        <% @players.each do |player| %>
-          <div class="col s12 m3">
-            <% if player.active == false %>
-              <div class="eliminated">
-            <% end %>
-            <div class="card small z-depth-3">
-              <div class ="card-image center user-pic th">
-                <%- if player.user.profile_photo.file == nil -%>
-                  <%= image_tag("default_prof_pic.jpg") %>
-                <%- else -%>
-                  <%= image_tag(player.user.profile_photo) %>
-                <%- end -%>
-              </div>
-              <div class="card-content">
-                <%= player.user.first_name %>
-                <%= player.user.last_name %>
-                <div class="eliminated-text">
-                  <%- if player.active == false %>
-                    <br><br><%= "PLAYER ELIMINATED" %>
-                  <% end %>
-                </div>
+  <div class="row">
+      <% @players.each do |player| %>
+        <div class="col s8 offset-s2 m3 l2 offset-l1">
+          <% if player.active == false %>
+            <div class="eliminated">
+          <% end %>
+          <div class="card small z-depth-3">
+            <h5>
+              <%= player.user.first_name %>
+              <%= player.user.last_name %>
+            </h5>
+            <div class ="card-image center user-pic th">
+              <%- if player.user.profile_photo.file == nil -%>
+                <%= image_tag("default_prof_pic.jpg") %>
+              <%- else -%>
+                <%= image_tag(player.user.profile_photo) %>
+              <%- end -%>
+            </div>
+            <div class="card-content center-align">
+              <div class="eliminated-text">
+                <%- if player.active == false %>
+                  <h5><%= "PLAYER ELIMINATED" %></h5>
+                <% end %>
               </div>
             </div>
-            <% if player.active == false %>
-              </div>
-            <% end %>
           </div>
-        <% end %>
-    </div>
+          <% if player.active == false %>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
   </div>
-</main>
+</div>

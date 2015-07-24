@@ -36,12 +36,9 @@ So other players know who is out of the game" do
     expect(page).to have_content target.user.first_name
     click_link "Target Eliminated?"
 
-    expect(page).to have_content "Eliminated."
+    expect(page).to have_content "ELIMINATED"
 
     visit game_path(game)
     expect(page).to have_content "PLAYER ELIMINATED"
-
-    # expect(page).to have_content "Your current targets:"
-    # expect(page).to have_content target.user.first_name
   end
 end

@@ -29,7 +29,6 @@ so that i can play the game" do
     click_button "Submit"
 
     expect(page).to have_content user.first_name
-    expect(page).to have_link "Leave game"
     expect(page).to_not have_link "Join game"
   end
 
