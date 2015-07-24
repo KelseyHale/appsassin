@@ -10,16 +10,13 @@
   </div>
     <div class="row select-box">
       <div class="input-field">
-        <label>Number of Players</lable>
-        <select>
-          <option value="2">2</option>
-          <option value="3">3</option>
-        </select>
+        <%= f.label :limit %><br>
+        <%= f.select :limit, options_for_select(2..40) %>
       </div><br>
     </div>
     <div class="row">
-      <div class="input-field">
-        <%= f.label :password, value: "Access code-to make your game private, add an access code to share with the desired players" %>
+      <div class="input-field clearfix">
+        <%= f.label :password, value: "Access code-to make your game private, add an access code to share with the desired players", class: "access-code" %>
         <% if @minimum_password_length %>
         <em>(<%= @minimum_password_length %> characters minimum)</em>
         <% end %>
