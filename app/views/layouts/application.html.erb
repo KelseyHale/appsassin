@@ -69,7 +69,7 @@
   </div>
 
   <%- flash.each do |key, value| -%>
-    <div class="flash flash-<%= key %>">
+    <div id="flash" class="btn flash flash-<%= key %>">
       <%= value %>
     </div>
   <%- end -%>
