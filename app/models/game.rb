@@ -38,4 +38,8 @@ class Game < ActiveRecord::Base
   def game_over?
     active_player_count == 1
   end
+
+  def random_picture
+    backgrounds = ["default_prof_pic.jpg", "007 color palette.jpeg"]
+  end
 end

@@ -1,5 +1,8 @@
-<h1>Active Games</h1>
-
+<div class="collection">
+  <h1>Active Games</h1>
+  <ul id="game-list">
 <% @games.each do |game| %>
-  <p><%= link_to game.name, game_path(game) %></p></br>
+  <li><a href="<%= game_path(game) %>" class="collection-item"><%= game.name %><div class="right-align"><%= "#{game.players.count}/#{game.limit} players" %></div></a></li>
 <% end %>
+</ul>
+</div>
