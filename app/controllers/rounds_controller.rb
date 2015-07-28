@@ -10,7 +10,7 @@ class RoundsController < ApplicationController
     end
 
     if @round.save
-      flash[:notice] = "The game has begun."
+      flash[:notice] = "The round has begun."
       redirect_to game_path(@game)
       @round.assign_targets_to_actives(@game)
     else

@@ -68,6 +68,6 @@ So targets will be assigned to players" do
     click_link "Start round"
 
     expect(page).to have_content "Round 1"
-    expect(page).to have_content "The game has begun."
+    expect(page).to have_content "The round has begun."
   end
 end
