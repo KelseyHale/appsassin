@@ -23,3 +23,9 @@ $( document ).ready(function(){
 $(document).ready(function() {
     $('select').material_select();
 });
+
+$(document).ready(function(){
+    Materialize.showStaggeredList('#game-list');
+});
+
+$('#flash').hide().delay(800).fadeIn(800).delay(4000).fadeOut(800)

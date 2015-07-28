@@ -5,6 +5,9 @@
   <% current_user.players.each do |player| %>
     <div class="col s6 offset-s3 m4 offset-m4 l2 offset-l5">
       <% if player.game.rounds.last != nil && player.game.rounds.last.name != 0 %>
+        <% if player.target.active == false %>
+          <div class="eliminated">
+        <% end %>
         <div class="card small z-depth-3">
           <h5><%= link_to player.game.name, game_path(player.game) %></br></h5>
             <% if player.active == false %>
@@ -28,12 +31,15 @@
                   <%= link_to_if player.active == true, "Target Eliminated?", game_target_path(player.game, player.target), data: { confirm: "Confirm target eliminated?" }, method: :put %>
                 </div>
               <% else %>
-                <div class="card-content center-align">
+                <div class="card-content center-align eliminated-text">
                 <%= "ELIMINATED" %>
               </div>
               <% end %>
             <% end %>
           </div>
+        <% if player.target.active == false %>
+          </div>
+        <% end %>
       <% else %>
       <div class="card small z-depth-3">
         <h5><%= link_to player.game.name, game_path(player.game) %></h5></br>

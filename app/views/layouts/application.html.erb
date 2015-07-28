@@ -64,21 +64,12 @@
           <li><%= link_to 'Sign In', new_user_session_path %></li>
         <%- end -%>
       </ul>
-      <!-- <i class="material-icons">search</i> -->
-
-      <!-- <form class="center">
-        <div class="input-field">
-          <input id="search" type="search" required>
-            <label for="search"><i class="material-icons">search</i></label>
-          <i class="material-icons">close</i>
-        </div>
-      </form> -->
 
     </nav>
   </div>
 
   <%- flash.each do |key, value| -%>
-    <div class="flash flash-<%= key %>">
+    <div id="flash" class="btn flash flash-<%= key %>">
       <%= value %>
     </div>
   <%- end -%>
@@ -100,9 +91,6 @@
           <h5 class="white-text">Contact Info</h5>
           <ul>
             <li><a class="grey-text text-lighten-3" href="https://github.com/KelseyHale/appsassin">https://github.com/KelseyHale/appsassin</a></li>
-            <!-- <li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
-            <li><a class="grey-text text-lighten-3" href="#!">Link 3</a></li>
-            <li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li> -->
           </ul>
         </div>
       </div>
@@ -110,7 +98,6 @@
     <div class="footer-copyright">
       <div class="container">
       Built on Rails with Materialize CSS
-      <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
       </div>
     </div>
   </footer>
